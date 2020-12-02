@@ -32,7 +32,8 @@ class PlaceFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //activity is MainActivity
-        if (viewModel.isPlaceSaved()) {
+        //点进去跳的是MainActivity，在WeatherActivity时他是不跳的
+        if (activity is MainActivity && viewModel.isPlaceSaved()) {
             val place = viewModel.getSavedPlace()
             val intent = Intent(context, WeatherActivity::class.java).apply {
                 putExtra("location_lng", place.location.lng)
